@@ -28,13 +28,13 @@ def scrape_article():
 def scrape_image():
     # Setting new URL for different website
 
-    url = "https://spaceimages-mars.com/"
+    url = "https://spaceimages-mars.com/image/featured/mars1.jpg"
     browser.visit(url)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
 
     # Finding the featured image and grabbing the url for it
-    featured_image_url = soup.find('img', class_="headerimage fade-in")['src']
+    featured_image_url = soup.find('img')['src']
 
     return featured_image_url
 
@@ -57,10 +57,10 @@ def scrape_facts_tables():
 
 def scrape_hemispheres():
     hemisphere_image_urls = [
-    {"title": "Valles Marineris Hemisphere", "img_url": "https://marshemispheres.com/valles.html"},
-    {"title": "Cerberus Hemisphere", "img_url": "https://marshemispheres.com/cerberus.html"},
-    {"title": "Schiaparelli Hemisphere", "img_url": "https://marshemispheres.com/schiaparelli.html"},
-    {"title": "Syrtis Major Hemisphere", "img_url": "https://marshemispheres.com/syrtis.html"},
+    {"title": "Valles Marineris Hemisphere", "img_url": "https://marshemispheres.com/images/valles_marineris_enhanced-full.jpg"},
+    {"title": "Cerberus Hemisphere", "img_url": "https://marshemispheres.com/images/full.jpg"},
+    {"title": "Schiaparelli Hemisphere", "img_url": "https://marshemispheres.com/images/schiaparelli_enhanced-full.jpg"},
+    {"title": "Syrtis Major Hemisphere", "img_url": "https://marshemispheres.com/images/syrtis_major_enhanced-full.jpg"},
     ]
     return hemisphere_image_urls
 
@@ -70,5 +70,7 @@ def scrape():
     mars_facts = scrape_facts_tables()
     hemisphere_images = scrape_hemispheres()
 
-    return {"article_title" : article_title, "article_blurb" : article_blurb, "featured_img_url" : featured_img_url, "mars_facts" : mars_facts, "hemisphere_images" : hemisphere_images }
+    return {"article_title" : article_title, "article_blurb" : article_blurb, "featured_image_url" : featured_img_url, "mars_facts" : mars_facts, "hemisphere_images" : hemisphere_images }
 
+
+print(scrape_hemispheres())

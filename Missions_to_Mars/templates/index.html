@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="display-4">Mission to Mars</h1>
+      
+      <hr class="my-4">
+      
+      <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a>
+    </div>
+  
+
+<!-- Beneath the jumbotron -->
+
+<!-- Displaying latest Mars News -->
+  <div class="row">
+    <div class="col-md-12">
+        <h3>Latest Mars New</h3>
+        <h4>{{listings.article_title}}</h4>
+        <p>{{listings.article_blurb}}</p>
+        
+       
+    </div>
+  </div>
+
+<!-- Displaying featured image and facts -->
+    <div class="row">
+    <div class="col-md-8">
+        <h3 class="text-center">Featured Mars Image</h3>
+        <img src="{{  listings.featured_image_url  }}">
+
+       
+        
+       
+    </div>
+ 
+
+  
+    <div class="col-md-4">
+        <h3 class="text-center">Mars Facts</h3>
+        
+        <p>{{listings.mars_facts | safe}}</p>
+        
+       
+    </div>
+    </div>
+
+
+    <!-- Hemispheres -->
+    <div class="row">
+        <h3>Mars Hemispheres</h3>
+        <div class="col-md-12">
+            {% for images in hemisphere_images %}
+
+            <div class="col-md-3">
+                
+                <img src="{{  images.img_url  }}">
+
+                <h3 class="text-center">{{ images.title }}</h3>
+
+            </div>
+            
+            {% endfor %}
+           
+        </div>
+    </div>
+</body>
+
+</html>
